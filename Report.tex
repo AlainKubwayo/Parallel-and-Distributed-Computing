@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage[explicit]{titlesec}
+\usepackage{ulem}
+\usepackage{lipsum}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{algpseudocode}
+
+
+\setcounter{secnumdepth}{4}
+\titleformat{\paragraph}[runin]
+	{\normalfont\normalsize\bfseries}{}{15pt}{\uline{\theparagraph\hspace*{1em}#1.}}
+\titleformat{name=\paragraph,numberless}[runin]
+	{\normalfont\normalsize\bfseries}{}{15pt}{\uline{#1.}}
+	
+\begin{document}
+
+\title{Indexing Multidimensional Arrays of Varying Dimensions}
+
+\section{Problem Description}
+Expectation is to write three procedures in C each of which takes as input a K-dimensional, K being any value between 1 and 16 inclusive, integer array for varying values of K. The first procedure initialises the elements of the array to zeroes, the second sets 10\% of the array elements to 1's, and the third, in a uniform random fashon, chooses 5\% of the array elements and prints these elements' values and their corresponding coordinate indices. Then, to write a main program that dynamically generates, in turn, 4 arrays A[100][100], A[100][100][100], A[50][50][50][50], and A[20][20][20][20][20] and allocates memory when invoked. For each array allocated, the main program calls the three procedures to perform the required operations on it.
+\section{Solution}
+\subsection{Solution Description}
+The first procedure creates a function that takes array and its size and initializes its elements to 0.
+The second procedure creates a function that takes array and its size and sets 10\% of the array elements to 1's. The buit-in srand() function was used to initialize the pseudo-random number generator by passing the argument seed. Function time was used as input for the seed and set to 1 to reinitialize the generator to its initial value so as to produce the results as before any call to rand and srand.
+The third procedure creates a function that takes an array, its size and the number of dimensions to display values and the indices of 5\% of the array elements.
+In the main program, four arrays were dynamically created and allocated memory. For each of the four array created, three procedures were called to initialize array elements to zero, then sets 10\% of the array elements to 1's, and, finally, chooses 5\% of the array elements and prints out the values and indices, respectively. 
+
+\subsection{Pseudocode}
+The page below contains the pseudocode for all three procedures mentioned above.
+\begin{algorithm}
+\caption{All three procedures}
+\SetAlgoLined
+\DontPrintSemicolon
+initializerfcn(arrptr, size)\;
+$i \gets 0$\;
+\While{$i>size$}{
+increment $i$ by $1$\;
+array[$i$] = $0$\;
+}
+
+toOnesFcn(arrayptr, size)\;
+
+$i \gets 0$\;
+upperbound = 0.1 * array size\;
+\While{$i>upperbound$}{
+increment $i$ by $1$\;
+index $i$ is a random number $<$ size\;
+array[$i$] = $1$\;
+}
+
+displayfcn(arrayptr, size, numDims)\;
+
+$i \gets 0$\;
+upperbound = 0.05 * array size\;
+\While{$i>upperbound$}{
+var1 = rand number $<$ size\;
+var2 = somevariable in base numDims\;
+display value and var2
+}
+\end{algorithm}
+
+\end{document}
