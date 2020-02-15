@@ -18,7 +18,8 @@ void init_v1(int *myarr, int size){
 
 void init_v2(int *myarr, int size){
 	srand((unsigned int) time(0));
-	int i, j, upper;
+	int i, j;
+	int upper = 0.1*size;
 	for( i=0; i<upper; i++){
 		j=rand()%size;
 		*(myarr+j)=1;
